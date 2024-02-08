@@ -1,4 +1,5 @@
-import { StyleSheet, StatusBar, Text, View, SafeAreaView, Button, Pressable } from "react-native";
+import { StyleSheet, StatusBar, Text, View, SafeAreaView, Button, Pressable, Image } from "react-native";
+import logo from "./assets/images/logo.png"
 
 export default function() {
   return (
@@ -6,6 +7,9 @@ export default function() {
       <StatusBar barStyle="default" />
       <SafeAreaView style={estilos.container}>
         <View style={estilos.viewLogo}>
+          <Image
+          source={logo} style={estilos.logo}
+          />
         <Text>Old Movie</Text>
         </View>
         <View style={estilos.viewBotoes}>
@@ -27,13 +31,17 @@ const estilos = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
     flex: 1,
-    backgroundColor: "yellow"
+    backgroundColor: "#2b2b2b"
   },
   viewLogo: {
-    backgroundColor: "green",
+    backgroundColor: "darkgray",
     flex: 3,
     alignItems: "center",
-    justifyContent: "flex-end"
+    justifyContent: "center"
+  },
+  logo: {
+    width: 128,
+    height: 128
   },
   viewBotoes: {
     backgroundColor: "orange",
