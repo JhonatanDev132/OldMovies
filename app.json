@@ -22,6 +22,9 @@
         "foregroundImage": "./assets/adaptive-dahora.png",
         "backgroundColor": "#000000"
       }
-    }
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }

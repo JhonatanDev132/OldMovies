@@ -3,16 +3,41 @@ import scream from "./assets/images/scream.png"
 import { Ionicons } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { useCallback } from "react";
+
+SplashScreen.preventAutoHideAsync();
+
 export default function() {
+  const [fontsLoaded, fontError] = useFonts({
+    'Monoton-Regular': require('./assets/fonts/Monoton-Regular.ttf'),
+  });
+
+  /* Função atrelada ao hook useCallback.
+  Quando uma função está conectada ao useCallback, garantimos
+  que a referência dela é armazenada na memória somente uma vez. */
+  const aoAtualizarLayout = useCallback(async () => {
+    /* Se estiver tudo ok com o carregamento */
+    if (fontsLoaded || fontError) {
+      /* Escondemos a splashscreen */
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
+
   return (
     <>
       <StatusBar barStyle="default" />
-      <SafeAreaView style={estilos.container}>
+      <SafeAreaView style={estilos.container} onLayout={aoAtualizarLayout}>
         <View style={estilos.viewLogo}>
           <Image
           source={scream} style={estilos.logo}
           />
-        <Text style={estilos.textoFoto}>Old Movie</Text>
+        <Text style={estilos.textoFoto}>Old Movies</Text>
         </View>
         <View style={estilos.viewBotoes}>
           <Pressable style={estilos.botao}>
@@ -55,7 +80,7 @@ const estilos = StyleSheet.create({
   textoFoto: {
     paddingTop: 10,
     fontSize: 24,
-    fontWeight: "bold"
+    fontFamily: "Monoton-Regular"
   },
   logo: {
     width: 128,
