@@ -12,6 +12,7 @@ SplashScreen.preventAutoHideAsync();
 export default function() {
   const [fontsLoaded, fontError] = useFonts({
     'Monoton-Regular': require('./assets/fonts/Monoton-Regular.ttf'),
+    NotoSans: require('./assets/fonts/NotoSans-VariableFont.ttf')
   });
 
   /* Função atrelada ao hook useCallback.
@@ -55,8 +56,18 @@ export default function() {
           </Pressable>
         </View>
         <View style={estilos.viewRodape}>
-          <Button title="Privacidade"/>
-          <Button title="Sobre"/>
+          <Pressable style={estilos.botaoRodape}>
+            <Text style={estilos.textoBotao}>
+              <Ionicons name="lock-closed" size={16} color="white"/>{" "}
+              Privacidade
+            </Text>
+          </Pressable>
+          <Pressable style={estilos.botaoRodape}>
+            <Text style={estilos.textoBotao}>
+              <Ionicons name="information-circle" size={16} color="white"/>{" "}
+              Sobre
+            </Text>
+          </Pressable>
         </View>
 
       </SafeAreaView>
@@ -66,8 +77,8 @@ export default function() {
 
 const estilos = StyleSheet.create({
   container: {
-    paddingLeft: 15,
-    paddingRight: 15,
+    paddingLeft: 0,
+    paddingRight: 0,
     flex: 1,
     backgroundColor: "#2b2b2b"
   },
@@ -99,13 +110,19 @@ const estilos = StyleSheet.create({
     borderRadius: 3
   },
   textoBotao: {
+    fontFamily: "NotoSans",
+    fontSize: 16,
+    fontWeight: "bold",
     color: "#fff"
   },
   viewRodape:{
-    backgroundColor: "red",
-    flex: 1,
+    backgroundColor: "#2b2b2b",
+    flex: 0.5,
     justifyContent: "space-between",
     flexDirection: "row",
     alignItems: "center"
+  },
+  botaoRodape: {
+    padding: 16
   }
 })
