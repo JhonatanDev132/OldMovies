@@ -4,12 +4,12 @@
     "slug": "old-Movies",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/dahora.png",
+    "icon": "./assets/images/scream.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/splash-dahora.png",
+      "image": "./assets/images/splash-oldmovies.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#2b2b2b"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,7 +19,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-dahora.png",
+        "foregroundImage": "./assets/images/adaptive-dahora.png",
         "backgroundColor": "#000000"
       }
     },

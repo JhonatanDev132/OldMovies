@@ -7,7 +7,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function SafeContainer({children}){
     const [fontsLoaded, fontError] = useFonts({
-        'Monoton-Regular': require('../../assets/fonts/Monoton-Regular.ttf'),
+        'kyiv': require('../../assets/fonts/KyivTypeSerif-Regular.otf'),
         NotoSans: require('../../assets/fonts/NotoSans-VariableFont.ttf')
       });
 

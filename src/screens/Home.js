@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import SafeContainer from '../components/SafeContainer'
 
-export default function Home() {
+export default function Home({navigation}) {
   return (
     <SafeContainer>
       <View style={estilos.viewLogo}>
@@ -29,13 +29,13 @@ export default function Home() {
           </Pressable>
         </View>
         <View style={estilos.viewRodape}>
-          <Pressable style={estilos.botaoRodape}>
+          <Pressable style={estilos.botaoRodape} onPress={() => navigation.navigate("Privacidade")}>
             <Text style={estilos.textoBotao}>
               <Ionicons name="lock-closed" size={16} color="white"/>{" "}
               Privacidade
             </Text>
           </Pressable>
-          <Pressable style={estilos.botaoRodape}>
+          <Pressable style={estilos.botaoRodape} onPress={() => navigation.navigate("Sobre")}>
             <Text style={estilos.textoBotao}>
               <Ionicons name="information-circle" size={16} color="white"/>{" "}
               Sobre
@@ -57,7 +57,7 @@ const estilos = StyleSheet.create({
       textoFoto: {
         paddingTop: 10,
         fontSize: 24,
-        fontFamily: "Monoton-Regular"
+        fontFamily: "kyiv"
       },
       logo: {
         width: 128,
@@ -65,7 +65,7 @@ const estilos = StyleSheet.create({
       },
       viewBotoes: {
         backgroundColor: "darkgray",
-        flex: 2,
+        flex: 1,
         justifyContent: "space-around",
         flexDirection: "row",
         alignItems: "flex-start"
