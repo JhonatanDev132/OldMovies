@@ -2,6 +2,12 @@
 
 Exemplo de app native multiplataforma cruadi com React native e Expo
 
+## Branch 03
+
+- Criação de telas básicas: Sobre e Privacidade.
+- Componente `ScrollView` para conteúdos maiores que a tela com suporte à rolagem.
+- Componente `Linking` para criação de link para web.
+
 ## Branch 02
 
 ### Utilização de fontes adicionais
