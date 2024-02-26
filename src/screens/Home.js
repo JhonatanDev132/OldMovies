@@ -14,7 +14,7 @@ export default function Home({navigation}) {
         <Text style={estilos.textoFoto}>Old Movies</Text>
         </View>
         <View style={estilos.viewBotoes}>
-          <Pressable style={estilos.botao}>
+          <Pressable style={estilos.botao} onPress={() => navigation.navigate("Buscar")}>
             <View style={{flexDirection: "row"}}>
             <Text style={estilos.textoBotao}>Buscar Filmes </Text>
             <Ionicons name="search" size={20} color="white" />
