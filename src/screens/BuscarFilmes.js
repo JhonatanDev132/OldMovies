@@ -1,10 +1,9 @@
 import { Alert, Pressable, ScrollView, StyleSheet, TextInput, Text, View, Vibration } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
-import React from 'react'
 import SafeContainer from '../components/SafeContainer'
 import { useState } from 'react';
 
-export default function BuscarFilmes(){
+export default function BuscarFilmes({ navigation }){
 
 
     const [filme, setFilme] = useState("");
@@ -19,7 +18,9 @@ export default function BuscarFilmes(){
         return Alert.alert("É preciso digitar um filme")
       }
 
-      Alert.alert("Você procurou por:", filme)
+      /* Redirecionando para a tela de Resultados passando
+      o filme para ela */
+      navigation.navigate("Resultados", { filme });
     }
 
 
