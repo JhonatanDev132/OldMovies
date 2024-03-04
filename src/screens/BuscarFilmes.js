@@ -1,4 +1,4 @@
-import { Alert, Pressable, ScrollView, StyleSheet, TextInput, Text, View } from 'react-native'
+import { Alert, Pressable, ScrollView, StyleSheet, TextInput, Text, View, Vibration } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react'
 import SafeContainer from '../components/SafeContainer'
@@ -7,15 +7,20 @@ import { useState } from 'react';
 export default function BuscarFilmes(){
 
 
-    const [filmeDigitado, setFilmeDigitado] = useState("");
+    const [filme, setFilme] = useState("");
 
-   const aoPressionarBotao = () => {
-      if (filmeDigitado.trim() === "") {
-        Alert.alert("você precisa digitar um filme")
-      } else {
-        Alert.alert(filmeDigitado)
+    const filmeDigitado = (valorDigitado) => [
+        setFilme(valorDigitado),
+    ]
+
+    const aoPressionarBotao = () => {
+      if (!filme) {
+        Vibration.vibrate(500);
+        return Alert.alert("É preciso digitar um filme")
       }
-   }
+
+      Alert.alert("Você procurou por:", filme)
+    }
 
 
     return(
@@ -30,7 +35,7 @@ export default function BuscarFilmes(){
                     <Ionicons style={estilos.icon} name="film" size={24} color="black" />
                     <TextInput 
                     style={estilos.input}
-                    onChangeText={(text) => setFilmeDigitado(text)}
+                    onChangeText={filmeDigitado}
                     onSubmitEditing={aoPressionarBotao}
                     placeholder='Digite o filme'
                     enterKeyHint='search'
