@@ -4,11 +4,11 @@ import SafeContainer from '../components/SafeContainer'
 
 
 export default function Resultados({ route }) {
-  console.log(route.params.filme);
+  const { filme } = route.params;
   return (
     <SafeContainer>
       <View style={estilos.subContainer}>
-        <Text style={estilos.subtitulo}>Você buscou por: </Text>
+        <Text style={estilos.texto}>Você buscou por: {filme}</Text>
       </View>
     </SafeContainer>
   )
