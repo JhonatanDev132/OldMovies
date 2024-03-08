@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text, View } from 'react-native';
 import SafeContainer from '../components/SafeContainer';
 import {api, apiKey} from '../services/api-moviedb';
 import { useEffect, useState  } from 'react';
+import CardFilme from '../components/CardFilme';
 
 
 export default function Resultados({ route }) {
@@ -36,10 +37,15 @@ export default function Resultados({ route }) {
         <Text style={estilos.texto}>Você buscou por: {filme}</Text>
         <View style={estilos.viewFilmes}>
           <FlatList 
+          // Prop data apontando para o state contendo os dados para a FlatList
           data={resultados}
-          keyExtractor={item => item.id} 
+
+          // Extraindo a chave/key de cada registro/item/filme único
+          keyExtractor={(item) => item.id} 
+
+          // Prop que irá renderizar cada item/filme em um componente
           renderItem={ ({item}) => {
-            return <Text> {item.title}</Text>
+            return <CardFilme filme={item}/>
           } }/>
         </View>
       </View>
