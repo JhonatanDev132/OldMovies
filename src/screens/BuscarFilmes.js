@@ -28,7 +28,7 @@ export default function BuscarFilmes({ navigation }){
         <SafeContainer>
             <View style={estilos.subContainer}>
             <ScrollView>
-                <Text style={estilos.texto}>Star treck? Harry potter? Senhor dos anéis?</Text>
+                <Text style={estilos.texto}>Star track? Harry potter? Senhor dos anéis?</Text>
 
                 <Text>Localize um filme que você viu ou gostaria de ver</Text>
 
