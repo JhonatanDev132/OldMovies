@@ -1,13 +1,18 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
 import SafeContainer from '../components/SafeContainer';
 import {api, apiKey} from '../services/api-moviedb';
 import { useEffect, useState  } from 'react';
 import CardFilme from '../components/CardFilme';
+import Separador from '../components/Separador';
+import NaoLocalizado from '../components/NaoLocalizado';
+
 
 
 export default function Resultados({ route }) {
   /* State para gerenciar os resultados da busca na API */
   const [resultados, setResultados] = useState([]);
+
+  const [loading, setLoading] = useState(true);
 
 
   // Capturando o parâmetro filme vindo de BuscarFilmes
@@ -25,6 +30,8 @@ export default function Resultados({ route }) {
           }
         })
         setResultados(resposta.data.results);
+
+        setLoading(false)
       } catch (error) {
         console.error("Deu ruim: "+ error.message);
       }
@@ -34,8 +41,12 @@ export default function Resultados({ route }) {
   return (
     <SafeContainer>
       <View style={estilos.subContainer}>
-        <Text style={estilos.texto}>Você buscou por: {filme}</Text>
-        <View style={estilos.viewFilmes}>
+        <Text style={estilos.texto}>Você buscou por: <Text style={estilos.filme}>{filme}</Text></Text>
+
+        {loading && <ActivityIndicator size="large" color="#2B2B2B"/>}
+
+        {!loading && (
+          <View style={estilos.viewFilmes}>
           <FlatList 
           // Prop data apontando para o state contendo os dados para a FlatList
           data={resultados}
@@ -46,8 +57,11 @@ export default function Resultados({ route }) {
           // Prop que irá renderizar cada item/filme em um componente
           renderItem={ ({item}) => {
             return <CardFilme filme={item}/>
-          } }/>
-        </View>
+          } }
+          ListEmptyComponent={NaoLocalizado}
+          ItemSeparatorComponent={Separador} 
+          />
+        </View>)}
       </View>
     </SafeContainer>
   )
@@ -55,7 +69,7 @@ export default function Resultados({ route }) {
 
 const estilos = StyleSheet.create({
     viewFilmes: {
-      marginVertical: 10,
+      marginVertical: 0,
     },
     subContainer: {
         flex: 0,
@@ -63,7 +77,11 @@ const estilos = StyleSheet.create({
         width: "100%"
     },
     texto: {
-        marginVertical: 0
+        marginBottom: 10,
+        textAlign: 'center'
+    },
+    filme: {
+      fontWeight: "bold"
     },
     nomeApp: {
     fontWeight: "bold",

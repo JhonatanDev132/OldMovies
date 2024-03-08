@@ -1,5 +1,5 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import Separador from './Separador';
 
 export default function CardFilme({filme}) {
   /* Extraindo as informações do filme (titulo e imagem de capa) */
@@ -34,8 +34,8 @@ const estilos = StyleSheet.create({
     },
     card: {
       flexDirection: "row",
-      marginVertical: 20,
       borderWidth: 2,
+      borderRadius: 2,
       backgroundColor: "#EEEEEE",
     },
     corpo: {
