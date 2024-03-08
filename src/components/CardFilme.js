@@ -1,19 +1,66 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import logo from "../../assets/images/scream.png"
 
-export default function CardFilme() {
+export default function CardFilme({filme}) {
+  /* Extraindo as informações do filme (titulo e imagem de capa) */
+  const { title, poster_path } = filme;
   return (
+    
     <View style={estilos.card}>
-      <Image style={estilos.image} source={logo}/>
+      <Image 
+      style={estilos.image} 
+      source={{ uri: `https://image.tmdb.org/t/p/w500/${poster_path}` }}
+      resizeMode="cover"
+      />
+      <View style={estilos.corpo}>
+        <Text style={estilos.titulo}>{title}</Text>
+        <View style={estilos.botoes}>
+          <Pressable style={estilos.botao}>
+            <Text style={estilos.textoBotao}>Leia mais</Text>
+          </Pressable>
+          <Pressable style={estilos.botao}>
+            <Text style={estilos.textoBotao}>Salvar</Text>
+          </Pressable>
+        </View>
+      </View>
     </View>
   )
 }
 
 const estilos = StyleSheet.create({
     image:{
-        width: 150,
-        height: 150,
-        marginVertical: 8
+        width: 110,
+        height: 160,
     },
+    card: {
+      flexDirection: "row",
+      marginVertical: 20,
+      borderWidth: 2,
+      backgroundColor: "#EEEEEE",
+    },
+    corpo: {
+    flex: 1,
+    backgroundColor: "#EEEEEE"
+    },
+    titulo: {
+      fontSize: 18,
+      color: "#EEEEEE",
+      backgroundColor: "#2B2B2B",
+      padding: 8,
+      marginVertical: 20,
+      textAlign: "center"
+    },
+    botoes: {
+      flexDirection: "row",
+      justifyContent: "space-around",
+    },
+    botao: {
+      backgroundColor: "#EEEEEE",
+      padding: 5,
+      borderRadius: 2,
+      borderWidth: 1
+    },
+    textoBotao: {
+      color: "#2B2B2B"
+    }
 })

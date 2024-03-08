@@ -2,6 +2,8 @@
 
 Exemplo de app nativo multiplataforma criado com React Native e Expo.
 
+
+
 ## Branch 05-desafio--tela-BuscarFilmes
 
 ### Solução: recursos utilizados

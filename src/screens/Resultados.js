@@ -55,7 +55,7 @@ export default function Resultados({ route }) {
 
 const estilos = StyleSheet.create({
     viewFilmes: {
-      marginVertical: 8
+      marginVertical: 10,
     },
     subContainer: {
         flex: 0,
@@ -63,7 +63,7 @@ const estilos = StyleSheet.create({
         width: "100%"
     },
     texto: {
-        marginVertical: 8
+        marginVertical: 0
     },
     nomeApp: {
     fontWeight: "bold",
