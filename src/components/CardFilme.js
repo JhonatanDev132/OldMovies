@@ -1,25 +1,34 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import imagemAlternativa from "../../assets/images/foto-alternativa.jpg";
+import { Ionicons } from '@expo/vector-icons';
 import Separador from './Separador';
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function CardFilme({filme}) {
   /* Extraindo as informações do filme (titulo e imagem de capa) */
   const { title, poster_path } = filme;
+
+  /* Acessar recursos de navegação */
+  const navigation = useNavigation();
   return (
     
     <View style={estilos.card}>
       <Image 
       style={estilos.image} 
-      source={{ uri: `https://image.tmdb.org/t/p/w500/${poster_path}` }}
+      source={poster_path ? { uri: `https://image.tmdb.org/t/p/w500/${poster_path}` } : imagemAlternativa } 
       resizeMode="cover"
       />
       <View style={estilos.corpo}>
         <Text style={estilos.titulo}>{title}</Text>
         <View style={estilos.botoes}>
-          <Pressable style={estilos.botao}>
-            <Text style={estilos.textoBotao}>Leia mais</Text>
+          <Pressable 
+          style={estilos.botao}
+          onPress={() => navigation.navigate("Detalhes")}>
+            <Text style={estilos.textoBotao} >Leia mais</Text>
           </Pressable>
           <Pressable style={estilos.botao}>
-            <Text style={estilos.textoBotao}>Salvar</Text>
+            <Text style={estilos.textoBotao}> <Ionicons name="add-circle" size={12} /> Salvar</Text>
           </Pressable>
         </View>
       </View>

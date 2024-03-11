@@ -2,6 +2,32 @@
 
 Exemplo de app nativo multiplataforma criado com React Native e Expo.
 
+## Branch 07-melhorias-nos-resultados
+
+- Loading usando `ActivityIndicator`
+- Em `Resultados`, aplicamos à `FlatList` componentes personalizados para o caso de não haver filmes na busca (`NaoEncontrado/ListEmptyComponent`) e
+  para separar cada elemento da `FlatList` (`Separador/ItemSeparatorComponent`)
+- Em `CardFilme` colocamos uma condicional para o carregamento de imagem alternativa caso algum filme não tenha imagem, e também ícones nos botões.
+
+## Branch 06-tela-de-resultados-e-programação-api
+
+### Resumo
+
+#### API de Filmes
+
+- Cadastro na API TheMovieDB
+- Criação de uma chave de API (API Key)
+- Configuração de variável ambiente através do arquivo `.env` contendo a API Key via Expo. (arquivo ENV são ignorados no versionamento)
+
+#### Consumo de dados da API
+
+- Instalação da lib **Axios**
+- Configuração/exportação do `services/api-moviedb.js` contendo a programação básica de acesso à API para uso em diferentes partes do app.
+
+#### Exibição dos resultados
+
+- Utilização do componente `FlatList` para listagem dinâmica dos resultados
+- Criação do componente `CardFilme` com uso de prop (`filme`) com carregamento do `title` e do `poster_path` (imagem) de cada filme.
 
 
 ## Branch 05-desafio--tela-BuscarFilmes
