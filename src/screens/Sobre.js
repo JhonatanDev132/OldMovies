@@ -1,14 +1,17 @@
 import { StyleSheet, Text, View, Image, Linking, Pressable, ScrollView } from 'react-native'
 import SafeContainer from '../components/SafeContainer'
 import logoTmdb from '../../assets/images/logo-tmdb.png'
+import { LinearGradient } from 'expo-linear-gradient'
 
 
 export default function Sobre() {
   return (
     <SafeContainer>
       <View style={estilos.subContainer}>
+    
         <ScrollView>
         <Text style={estilos.subtitulo}>Sobre o app Old Movies</Text>
+
         <Text style={estilos.texto}>O <Text style={estilos.nomeApp}>Old Movies</Text> é um aplicativo com fidelidade de permitir a busca por informações sobre filmes existentes na base de dados pública disponibilizada pelo site The Movie Database (TMDb).</Text>
 
         <Pressable style={estilos.tmdb} onPress={() => {Linking.openURL('https://www.themoviedb.org/?language=pt-BR')}}>

@@ -18,13 +18,13 @@ export default function CardFilme({filme}) {
       style={estilos.image} 
       source={poster_path ? { uri: `https://image.tmdb.org/t/p/w500/${poster_path}` } : imagemAlternativa } 
       resizeMode="cover"
-      />
+      />  
       <View style={estilos.corpo}>
         <Text style={estilos.titulo}>{title}</Text>
         <View style={estilos.botoes}>
           <Pressable 
           style={estilos.botao}
-          onPress={() => navigation.navigate("Detalhes")}>
+          onPress={() => navigation.navigate("Detalhes", {filme})}>
             <Text style={estilos.textoBotao} >Leia mais</Text>
           </Pressable>
           <Pressable style={estilos.botao}>
@@ -57,7 +57,8 @@ const estilos = StyleSheet.create({
       backgroundColor: "#2B2B2B",
       padding: 8,
       marginVertical: 20,
-      textAlign: "center"
+      textAlign: "center",
+      
     },
     botoes: {
       flexDirection: "row",
