@@ -34,8 +34,7 @@ const estilos = StyleSheet.create({
     container: {
         paddingLeft: 0,
         paddingRight: 0,
-        paddingBottom: 50,
-        flex: 2,
+        flex: 1,
         backgroundColor: "#EEEEEE"
       },
    
