@@ -1,4 +1,4 @@
-import { Alert, Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Alert, Image, Pressable, StyleSheet, Text, Vibration, View } from 'react-native';
 import imagemAlternativa from "../../assets/images/foto-alternativa.jpg";
 import { Ionicons } from '@expo/vector-icons';
 import Separador from './Separador';
@@ -20,13 +20,30 @@ export default function CardFilme({filme}) {
       Se filmes favoritos existir (ou seja, tem dados no storage), pegamos estes dados (strings) e convertemos em objeto (JSON.parse). Caso contrário,
       listaDeFilmes será um array vazio. */
       const listaDeFilmes = filmesFavoritos ? JSON.parse(filmesFavoritos) : [];
-      /* 3) Verificar se já tem algum filme na lista */
+
+      /* 3) Verificar se já tem algum filme na lista.
+      Usamos a função some() para avaliar se o ID do filme dentro da 
+      listaDeFilmes é o mesmo de um filme exibido na tela do app (nos
+      Cards). Se for, retorna TRUE indicando que o filme já foi salvo
+      em algum momento. Caso contrário, retorna FALSE indicando que o
+      filme ainda não foi salvo. */
 
       const jaTemFilme = listaDeFilmes.some( (filmeNaLista) => {
         return filmeNaLista.id === filme.id
-      } )
+      });
 
-      /* 4) Se o filme não estiver na lista, então vamos colocá-lo */
+      /* 4) Verificação, altera e registro do filme */
+
+      /* 4.1) Se ja tem filme, avisaremos ao usuário */
+      if (jaTemFilme) {
+        Alert.alert("Ops!", "Você já salvou este filme!");
+        Vibration.vibrate();
+        return;
+      }
+
+      /* 4.2) Senão, vamos colocar na lista */
+      listaDeFilmes.push(filme);
+
       /* 5) Usamos o AsyncStorage para gravar no armazenamento offline do dispositivo */
     } catch (error) {
       console.log("Erro: "+error);
