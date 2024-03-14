@@ -1,4 +1,4 @@
-import { StyleSheet, StatusBar,} from "react-native";
+import { StyleSheet, StatusBar, Button, Pressable,Text} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -27,9 +27,30 @@ export default function() {
           <Stack.Screen name="Privacidade" component={Privacidade} />
           <Stack.Screen name="Buscar" component={BuscarFilmes} options={{ title: "O que você procura?"}}/>
           <Stack.Screen name="Resultados" component={Resultados}/>
-          <Stack.Screen name="Detalhes" component={Detalhes} />
+          <Stack.Screen 
+          name="Detalhes" 
+          component={Detalhes}
+          options={({navigation}) => {
+            return{
+              headerRight: () => <Pressable style={estilos.botao} onPress={() => navigation.navigate("Home")}>
+                <Text style={estilos.textoBotao}>Home</Text>
+              </Pressable>,
+            };
+          }} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
   )
 }
+const estilos = StyleSheet.create({
+  botao: {
+    borderWidth: 2,
+    borderColor: "#EEEEEE",
+    borderRadius: 2,
+    padding: 10,
+    
+  },
+  textoBotao: {
+    color: "#EEEEEE"
+  }
+})
