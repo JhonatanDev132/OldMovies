@@ -21,7 +21,7 @@ export default function Home({navigation}) {
             </View>
           </Pressable>
 
-          <Pressable style={estilos.botao}>
+          <Pressable style={estilos.botao} onPress={() => navigation.navigate("Favoritos")}>
             <View style={{flexDirection: "row"}}>
             <Fontisto name="favorite" size={20} color="white" />
             <Text style={estilos.textoBotao}> Favoritos</Text>

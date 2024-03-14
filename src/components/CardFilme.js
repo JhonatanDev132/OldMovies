@@ -1,16 +1,30 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Alert, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import imagemAlternativa from "../../assets/images/foto-alternativa.jpg";
 import { Ionicons } from '@expo/vector-icons';
 import Separador from './Separador';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function CardFilme({filme}) {
-  /* Extraindo as informações do filme (titulo e imagem de capa) */
   const { title, poster_path } = filme;
-
-  /* Acessar recursos de navegação */
   const navigation = useNavigation();
+  const salvar = async () => {
+    try {
+      /* 1) Verificar/carregar os favoritos armazenados no AsyncStorage.
+      Usamos o getItem do AsyncStorage para analisar se existe um armazenamento com o nome indicado (@favoritosoldmovies). Existindo
+      ele é carregado para a const filmesFavoritos. Se não existir, será criado posteriormente. */
+      const filmesFavoritos = await AsyncStorage.getItem("@favoritosoldmovies");
+
+      /* 2) Verificar/Criar uma lista de filmes favoritos (dados) */
+      /* 3) Verificar se já tem algum filme na lista */
+      /* 4) Se o filme não estiver na lista, então vamos colocá-lo */
+      /* 5) Usamos o AsyncStorage para gravar no armazenamento offline do dispositivo */
+    } catch (error) {
+      console.log("Erro: "+error);
+      Alert.alert("Erro", "Ocorreu um erro ao salvar o filme");
+    }
+  };
   return (
     
     <View style={estilos.card}>
@@ -27,7 +41,10 @@ export default function CardFilme({filme}) {
           onPress={() => navigation.navigate("Detalhes", {filme})}>
             <Text style={estilos.textoBotao} >Leia mais</Text>
           </Pressable>
-          <Pressable style={estilos.botao}>
+          <Pressable 
+          style={estilos.botao}
+          onPress={salvar}
+          >
             <Text style={estilos.textoBotao}> <Ionicons name="add-circle" size={12} /> Salvar</Text>
           </Pressable>
         </View>
