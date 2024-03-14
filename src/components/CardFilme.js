@@ -16,9 +16,16 @@ export default function CardFilme({filme}) {
       ele é carregado para a const filmesFavoritos. Se não existir, será criado posteriormente. */
       const filmesFavoritos = await AsyncStorage.getItem("@favoritosoldmovies");
 
-      /* 2) Verificar/Criar uma lista de filmes favoritos (dados) */
+      /* 2) Verificar/Criar uma lista de filmes favoritos (dados).
+      Se filmes favoritos existir (ou seja, tem dados no storage), pegamos estes dados (strings) e convertemos em objeto (JSON.parse). Caso contrário,
+      listaDeFilmes será um array vazio. */
       const listaDeFilmes = filmesFavoritos ? JSON.parse(filmesFavoritos) : [];
       /* 3) Verificar se já tem algum filme na lista */
+
+      const jaTemFilme = listaDeFilmes.some( (filmeNaLista) => {
+        return filmeNaLista.id === filme.id
+      } )
+
       /* 4) Se o filme não estiver na lista, então vamos colocá-lo */
       /* 5) Usamos o AsyncStorage para gravar no armazenamento offline do dispositivo */
     } catch (error) {
