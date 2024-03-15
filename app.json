@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Old Movies",
-    "slug": "old-Movies",
+    "slug": "old-movies",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/scream.png",
@@ -21,10 +21,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-dahora.png",
         "backgroundColor": "#000000"
-      }
+      },
+      "package": "com.jhonx.oldmovies"
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "191cf8f1-f7cb-4ac5-b68c-5df6de4446ea"
+      }
+    },
+    "owner": "jhonx"
   }
 }
