@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 
-export default function Favoritos({ navigation }) {
+export default function Favoritos({ navigation, filme }) {
   /* State para registrar os dados carregados do storage */
   const [listaFavoritos, setListaFavoritos] = useState([]);
 
@@ -34,32 +34,96 @@ export default function Favoritos({ navigation }) {
     carregarFavoritos();
   }, [])
 
-  console.log(listaFavoritos);
+  const excluirTodosFavoritos = async () => {
+    Alert.alert("Exluir TODOS?",
+     "Você tem certeza que deseja excluir tudo?",
+     [
+      /* Propriedades style (aparência do botão):
+      SOMENTE NO IOS que faz diferença */
+      {
+        text: "Cancelar",
+        style: "cancel",
+      },
+      {
+        text: "Confirmar",
+        style: "destrutive",
+        onPress: async()=>{
+          // Removemos nosso storage de favoritos
+          await AsyncStorage.removeItem("@favoritosoldmovies");
+
+          // Atualizamos o state para serem removidos da tela
+          setListaFavoritos([]);
+        }
+      }
+     ]
+     );
+  }
+
+  const excluirFavorito = async (filmeId, filmeTitle) => {
+    Alert.alert("Excluir filme do favorito?", 
+    "Tem certeza que você deseja excluir esse filme dos favoritos?",
+    [
+      {
+        text: "Cancelar",
+        style: "cancel",
+      },
+      {
+        text: "Confirmar",
+        style: "destructive",
+
+        onPress: async()=>{
+          try {
+
+            /* Gerar uma nova lista de favoritos EXCETO o filme que será removido */
+            const novosFavoritos = listaFavoritos.filter((filme) => filme.id !== filmeId);
+            
+            /* Usamos para conseguir mexer na memória física */
+            await AsyncStorage.setItem('@favoritosoldmovies', JSON.stringify(novosFavoritos))
+            
+            /* Atualiza o state com os dados da nova lista
+            SEM o filme removido */
+            setListaFavoritos(novosFavoritos)
+            Alert.alert(`${filmeTitle} excluido dos favoritos`);
+          } catch (error) {
+            console.error('Erro ao excluir o filme dos favoritos: ', error);
+          }
+        }
+      }
+    ]
+    )
+  }
 
   return (
     <SafeContainer>
       <View style={estilos.subContainer}>
          <View style={estilos.viewFavoritos}>
           <Text style={estilos.texto}>Quantidade: {listaFavoritos.length}</Text>
-
-          <Pressable style={estilos.botao}>
+        
+        {
+          listaFavoritos.length > 0 && (
+          <Pressable onPress={excluirTodosFavoritos} style={estilos.botao}>
             <Text style={estilos.textoBotao}>
               <Ionicons name="trash-outline" size={16} /> Excluir favoritos
             </Text>
           </Pressable>
+          )
+        }
          </View>
 
         <ScrollView showsVerticalScrollIndicator={false}>
           {listaFavoritos.map( (filme) => {
             return(
-             <View style={estilos.item} >
+             <View key={filme.id} style={estilos.item} >
               <Pressable 
               style={estilos.botaoFilme}
-              onPress={()=>{ navigation.navigate("Detalhes", {filme}) }}
+              onPress={()=>{ navigation.navigate("Detalhes", {filme}) }}rt
               >
                 <Text style={estilos.titulo}>{filme.title}</Text>
               </Pressable>
-              <Pressable style={estilos.botaoExcluir}>
+              <Pressable 
+              style={estilos.botaoExcluir}
+              onPress={() => excluirFavorito(filme.id, filme.title)}
+              >
                 <Ionicons name='trash' size={16} color="white"/>
               </Pressable>
             </View>
@@ -78,7 +142,8 @@ const estilos = StyleSheet.create({
         padding: 16,
     },
     texto: {
-      marginTop: 6,
+      marginTop: 3,
+      fontSize: 18
     },
     viewFavoritos: {
       flexDirection: "row",
