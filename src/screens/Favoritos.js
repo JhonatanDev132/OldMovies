@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 
-export default function Favoritos() {
+export default function Favoritos({ navigation }) {
   /* State para registrar os dados carregados do storage */
   const [listaFavoritos, setListaFavoritos] = useState([]);
 
@@ -53,11 +53,14 @@ export default function Favoritos() {
           {listaFavoritos.map( (filme) => {
             return(
              <View style={estilos.item} >
-              <Pressable style={estilos.botaoFilme}>
+              <Pressable 
+              style={estilos.botaoFilme}
+              onPress={()=>{ navigation.navigate("Detalhes", {filme}) }}
+              >
                 <Text style={estilos.titulo}>{filme.title}</Text>
               </Pressable>
               <Pressable style={estilos.botaoExcluir}>
-                <Ionicons name='trash' size={16}/>
+                <Ionicons name='trash' size={16} color="white"/>
               </Pressable>
             </View>
             )
@@ -93,6 +96,24 @@ const estilos = StyleSheet.create({
     },
     item: {
       flexDirection: "row",
-      justifyContent: "space-between"
+      justifyContent: "space-between",
+      backgroundColor: "#DDDEEE",
+      marginBottom: 8,
+      borderRadius: 2,
+      alignItems: "center",
+      padding: 10,
+      borderWidth: 1
+    },
+    botaoExcluir: {
+      backgroundColor: "red",
+      padding: 6,
+      borderRadius: 2,
+      marginLeft: 2
+    },
+    botaoFilme: {
+      flex: 1
+    },
+    titulo: {
+      fontSize: 14
     }
 })
