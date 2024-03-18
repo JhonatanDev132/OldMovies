@@ -15,7 +15,7 @@
         "gradleCommand": ":app:assembleRelease"
       },
       "env": {
-        "EXPO_PUBLIC_API_URL": "926e0a7a5f1c6eaeb26fc653f36ed8e8"
+        "EXPO_PUBLIC_API_URL": "ac7d4b1b20306e96a469352f837fff2a"
       }
     },
     "production": {}
