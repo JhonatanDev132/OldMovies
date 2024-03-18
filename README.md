@@ -25,9 +25,15 @@ Exemplo de app nativo multiplataforma criado com React Native e Expo.
     },
 ```
 
-8. Analisar os pacotes do projeto e outros possíveis problemas: `npx -y expo-doctor`
+8. Analisar os pacotes do projeto e outros possíveis problemas: `npx -y expo-doctor`. Se sinalizar outros problemas (nas imagens por exemplo), corrija.
 
-9. Iniciar o processo de build/compilação: `eas build --profile preview`
+9. Adicionar ao `eas.json` dentro de `preview` a API Key de acordo com o conteúdo do arquivo `env`: 
+
+```json
+"env": {
+  "EXPO_PUBLIC_NOME_ENV": "valor"
+}
+```
 
 ## Branch 09-gerenciamento-de-favoritos
 
