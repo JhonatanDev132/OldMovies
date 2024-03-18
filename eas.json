@@ -13,6 +13,9 @@
       "android" : {
         "buildType": "apk",
         "gradleCommand": ":app:assembleRelease"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "926e0a7a5f1c6eaeb26fc653f36ed8e8"
       }
     },
     "production": {}
