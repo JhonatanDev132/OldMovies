@@ -25,7 +25,9 @@ Exemplo de app nativo multiplataforma criado com React Native e Expo.
     },
 ```
 
-8. Iniciar o processo de build/compilação: `eas build --profile preview`
+8. Analisar os pacotes do projeto e outros possíveis problemas: `npx -y expo-doctor`
+
+9. Iniciar o processo de build/compilação: `eas build --profile preview`
 
 ## Branch 09-gerenciamento-de-favoritos
 
